@@ -28,7 +28,7 @@ public class MazeSpawner : MonoBehaviour {
 
 	private BasicMazeGenerator mMazeGenerator = null;
 
-	void Start () {
+	void Awake () {
 		if (!FullRandom) {
 			Random.seed = RandomSeed;
 		}

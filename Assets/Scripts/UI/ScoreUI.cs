@@ -9,7 +9,7 @@ public class ScoreUI : MonoBehaviour
     private ScoreService _scoreService;
     private void Awake() => _scoreService = Bootstrap.ServiceLocator.GetService<ScoreService>();
 
-    private void Start() => _scoreService.OnCoinsChangedEvent += UpdateScoreUI;
+    private void OnEnable() => _scoreService.OnCoinsChangedEvent += UpdateScoreUI;
 
     private void OnDisable() => _scoreService.OnCoinsChangedEvent -= UpdateScoreUI;
 

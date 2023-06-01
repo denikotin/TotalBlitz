@@ -11,7 +11,6 @@ namespace Assets.Scripts.Logic
 
         private void OnCollisionEnter(Collision collision)
         {
-            Debug.Log(collision.transform.tag);
             switch (collision.transform.tag)
             {
                 case "Coin":

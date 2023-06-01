@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Logic
@@ -11,12 +7,12 @@ namespace Assets.Scripts.Logic
     {
         public Axis GetDirection()
         {
-            throw new NotImplementedException();
+            return new Axis();
         }
 
         public Quaternion GetRotation()
         {
-            throw new NotImplementedException();
+            return new Quaternion();
         }
     }
 }

@@ -7,14 +7,13 @@ public class Bootstrap : MonoBehaviour
 
     [SerializeField] GameObject _lobbySceneManagerPrefab;
 
-    private static Bootstrap _instance = null;
     public static Bootstrap Instance { get { return _instance; } }
+    private static Bootstrap _instance = null;
 
-    private static ServiceLocator _serviceLocator;
     public static ServiceLocator ServiceLocator { get { return _serviceLocator; } }
+    private static ServiceLocator _serviceLocator;
 
     private Factory _factory;
-    private SceneLoader _sceneLoader;
 
     private void Awake()
     {
@@ -45,15 +44,10 @@ public class Bootstrap : MonoBehaviour
     private void RegisterServices()
     {
         _serviceLocator = new ServiceLocator();
-
         _serviceLocator.RegisterService<Factory>(new Factory());
         _serviceLocator.RegisterService<AssetsPaths>(new AssetsPaths());
         _serviceLocator.RegisterService<SceneLoader>(new SceneLoader());
         _serviceLocator.RegisterService<ScoreService>(new ScoreService());
     }
-    private void GetServices()
-    {
-        _factory = _serviceLocator.GetService<Factory>();
-        _sceneLoader = _serviceLocator.GetService<SceneLoader>();
-    }
+    private void GetServices() => _factory = _serviceLocator.GetService<Factory>();
 }
