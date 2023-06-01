@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Services;
-using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Logic
@@ -14,8 +13,7 @@ namespace Assets.Scripts.Logic
         {
             GetServices();
             CreateUI();
-            GenerateLevel();
-            CreateMoney();
+            CreateMapGenerator();
             CreatePlayer();
             CreateEnemies();
         }
@@ -33,17 +31,12 @@ namespace Assets.Scripts.Logic
 
         private void CreatePlayer()
         {
-
+            GameObject player = _factory.Create(_assetsPaths.PLAYER);
         }
 
-        private void CreateMoney()
+        private void CreateMapGenerator()
         {
-
-        }
-
-        private void GenerateLevel()
-        {
-            
+            GameObject  mapGenerator = _factory.Create(_assetsPaths.MAZE_SPAWNER);
         }
 
         private void CreateUI()

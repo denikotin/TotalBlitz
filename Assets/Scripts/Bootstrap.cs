@@ -24,15 +24,12 @@ public class Bootstrap : MonoBehaviour
         GetServices();
     }
 
-    private void Start()
-    {
-        RunGame();
-    }
+    private void Start() => RunGame();
 
     private void RunGame()
     {
         GameObject lobbySceneManagerGO = _factory.Create(_lobbySceneManagerPrefab);
-        lobbySceneManagerGO.GetComponent<LobbySceneManager>().Construct(_serviceLocator, _gameSceneManagerPrefab);
+        lobbySceneManagerGO.GetComponent<LobbySceneManager>().Construct(_serviceLocator);
     }  
     private void CreateSingleton()
     {

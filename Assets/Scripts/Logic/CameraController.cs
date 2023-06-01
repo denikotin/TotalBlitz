@@ -33,7 +33,7 @@ namespace Assets.Scripts.Logic.Camera
         {
             _rotationY += Input.GetAxis("Mouse X") * _cameraSpeed;
             _rotationX += Input.GetAxis("Mouse Y") * _cameraSpeed;
-            float clampedRotationX = Mathf.Clamp(_rotationX, -_verticalAngle, _verticalAngle);
+            float clampedRotationX = Mathf.Clamp(90f, -_verticalAngle, _verticalAngle);
             return Quaternion.Euler(clampedRotationX, _rotationY, 0f);
         }
     }
