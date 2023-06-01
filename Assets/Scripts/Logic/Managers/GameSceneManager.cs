@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Services;
+﻿using Assets.Scripts.Logic.Camera;
+using Assets.Scripts.Services;
 using UnityEngine;
 
 namespace Assets.Scripts.Logic
@@ -32,6 +33,8 @@ namespace Assets.Scripts.Logic
         private void CreatePlayer()
         {
             GameObject player = _factory.Create(_assetsPaths.PLAYER);
+            player.GetComponent<MoveController>()
+                .Construct(new PlayerInputService(player.GetComponentInChildren<CameraController>()));
         }
 
         private void CreateMapGenerator()
