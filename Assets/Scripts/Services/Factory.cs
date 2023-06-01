@@ -10,5 +10,11 @@ namespace Assets.Scripts.Services
                 GameObject gameObject = Object.Instantiate(prefab);
                 return gameObject;
         }
+
+        public GameObject Create(GameObject prefab)
+        {
+            GameObject gameObject = Object.Instantiate(prefab);
+            return gameObject;
+        }
     }
 }
