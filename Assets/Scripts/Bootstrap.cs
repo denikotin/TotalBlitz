@@ -14,9 +14,8 @@ public class Bootstrap : MonoBehaviour
     private static ServiceLocator _serviceLocator;
     public static ServiceLocator ServiceLocator { get { return _serviceLocator; } }
 
-
-
     private Factory _factory;
+    private SceneLoader _sceneLoader;
 
     private void Awake()
     {
@@ -34,7 +33,7 @@ public class Bootstrap : MonoBehaviour
     {
         GameObject lobbySceneManagerGO = _factory.Create(_lobbySceneManagerPrefab);
         lobbySceneManagerGO.GetComponent<LobbySceneManager>().Construct(_serviceLocator, _gameSceneManagerPrefab);
-    }
+    }  
     private void CreateSingleton()
     {
         if (_instance == null)
@@ -58,5 +57,6 @@ public class Bootstrap : MonoBehaviour
     private void GetServices()
     {
         _factory = _serviceLocator.GetService<Factory>();
+        _sceneLoader = _serviceLocator.GetService<SceneLoader>();
     }
 }

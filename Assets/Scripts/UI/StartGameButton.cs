@@ -19,12 +19,6 @@ namespace Assets.Scripts.UI
 
         private void Start() => _startButton.onClick.AddListener(StartGame);
 
-        private void StartGame() => _sceneLoader.Load("Game", onLoaded:CreateGameSceneManager);
-
-        private void CreateGameSceneManager()
-        {
-            GameObject gameSceneManagerGO = _factory.Create(_gameSceneManagerPrefab);
-            Debug.Log("dasda");
-        }
+        private void StartGame() => _sceneLoader.Load("Game");
     }
 }
