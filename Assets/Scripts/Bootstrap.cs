@@ -6,7 +6,6 @@ public class Bootstrap : MonoBehaviour
 {
 
     [SerializeField] GameObject _lobbySceneManagerPrefab;
-    [SerializeField] GameObject _gameSceneManagerPrefab;
 
     private static Bootstrap _instance = null;
     public static Bootstrap Instance { get { return _instance; } }
@@ -50,6 +49,7 @@ public class Bootstrap : MonoBehaviour
         _serviceLocator.RegisterService<Factory>(new Factory());
         _serviceLocator.RegisterService<AssetsPaths>(new AssetsPaths());
         _serviceLocator.RegisterService<SceneLoader>(new SceneLoader());
+        _serviceLocator.RegisterService<ScoreService>(new ScoreService());
     }
     private void GetServices()
     {

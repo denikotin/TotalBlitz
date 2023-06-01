@@ -9,6 +9,7 @@ namespace Assets.Scripts.Logic
 
         private Factory _factory;
         private AssetsPaths _assetsPaths;
+        private ScoreService _scoreService;
 
         private void Start()
         {
@@ -23,6 +24,7 @@ namespace Assets.Scripts.Logic
         {
             _factory = Bootstrap.ServiceLocator.GetService<Factory>();
             _assetsPaths = Bootstrap.ServiceLocator.GetService<AssetsPaths>();
+            _scoreService = Bootstrap.ServiceLocator.GetService<ScoreService>();
         }
 
         private void CreateEnemies()
@@ -33,8 +35,10 @@ namespace Assets.Scripts.Logic
         private void CreatePlayer()
         {
             GameObject player = _factory.Create(_assetsPaths.PLAYER);
-            player.GetComponent<MoveController>()
-                .Construct(new PlayerInputService(player.GetComponentInChildren<CameraController>()));
+
+            player.GetComponent<MoveController>().Construct(new PlayerInputService(player.GetComponentInChildren<CameraController>()));
+            player.GetComponent<PlayerScore>().Construct(_scoreService, player.GetComponent<PlayerCollision>());
+
         }
 
         private void CreateMapGenerator()
