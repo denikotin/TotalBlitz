@@ -20,17 +20,30 @@ public class ShowRecords : MonoBehaviour
 
     public void CreateRecords()
     {
+        ClearContainer();
+
         List<Record> records = _recordService.GetRecord().Records;
+        records.Sort((x, y) => x.Value.CompareTo(y.Value));
+        records.Reverse();
 
-
-        for (int i=0; i < records.Count; i++)
+        for (int i = 0; i < records.Count; i++)
         {
             GameObject recordLine = _factory.Create(_recordLine);
             recordLine.transform.SetParent(_recordsContainer.transform);
             TextMeshProUGUI lineNumber = recordLine.GetComponent<RecordLine>().Number;
-            TextMeshProUGUI lineText =   recordLine.GetComponent<RecordLine>().Text;
+            TextMeshProUGUI lineText = recordLine.GetComponent<RecordLine>().Text;
             lineNumber.text = (i + 1).ToString();
             lineText.text = ($"{records[i].Value} монет");
-         }
+        }
+    }
+
+    private void ClearContainer()
+    {
+        for (int i = 0; i < _recordsContainer.transform.childCount; i++)
+        {
+            List<GameObject> children = new List<GameObject>();
+            foreach (Transform child in _recordsContainer.transform) children.Add(child.gameObject);
+            children.ForEach(child => Destroy(child));
+        }
     }
 }

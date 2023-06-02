@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assets.Scripts.Data.PlayerData
 {
@@ -14,6 +10,6 @@ namespace Assets.Scripts.Data.PlayerData
         public Record(int value)
         {
             Value = value;
-        }   
+        }
     }
 }

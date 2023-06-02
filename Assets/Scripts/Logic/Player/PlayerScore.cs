@@ -25,17 +25,17 @@ namespace Assets.Scripts.Logic
         private void OnEnable()
         {
             _playerCollision.OnCoinCollisionEvent += AddCoins;
-            _playerLose.OnPlayerLoseEvent += WriteCoins;
+            _playerLose.OnPlayerLoseEvent += WriteScores;
         }
 
         private void OnDisable()
         {
             _playerCollision.OnCoinCollisionEvent -= AddCoins;
-            _playerLose.OnPlayerLoseEvent -= WriteCoins;
+            _playerLose.OnPlayerLoseEvent -= WriteScores;
         }
 
         private void AddCoins() => _scoreService.AddScore(1);
-        private void WriteCoins()
+        private void WriteScores()
         {
             _recordService.WriteRecord(new Record(_scoreService.GetScore()));
             _saveLoadService.Save();
