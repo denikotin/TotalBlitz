@@ -17,13 +17,17 @@ namespace Assets.Scripts.Logic.Camera
 
         private void Start() => SetCameraPosition();
 
-        private void Update() => SetCameraPosition();
+        private void Update()
+        {
+            SetCameraPosition();
+            ChangeVerticalOffSet();
+        }
 
         private void SetCameraPosition()
         {
             Quaternion targetRotaion = CreateTargetRotaion();
 
-            Vector3 focusPosition = _target.position + Vector3.up * _verticalOffset;
+            Vector3 focusPosition = _target.position + Vector3.up * Mathf.Clamp(_verticalOffset,0,5f);
             Vector3 newCameraPosition = focusPosition - targetRotaion * new Vector3(0f, 0f, _distanceToTarget);
             transform.position = newCameraPosition;
             transform.rotation = targetRotaion;
@@ -35,6 +39,18 @@ namespace Assets.Scripts.Logic.Camera
             _rotationX += Input.GetAxis("Mouse Y") * _cameraSpeed;
             float clampedRotationX = Mathf.Clamp(90f, -_verticalAngle, _verticalAngle);
             return Quaternion.Euler(clampedRotationX, _rotationY, 0f);
+        }
+
+        private void ChangeVerticalOffSet()
+        {
+            if(Input.mouseScrollDelta.y > 0f)
+            {
+                _verticalOffset -= 1f;     
+            }
+            else if (Input.mouseScrollDelta.y < 0f)
+            {
+                _verticalOffset += 1f;
+            }
         }
     }
 }

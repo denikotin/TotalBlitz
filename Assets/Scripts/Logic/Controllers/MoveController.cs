@@ -1,4 +1,5 @@
 using Assets.Scripts.Logic;
+using Assets.Scripts.Logic.Camera;
 using UnityEngine;
 
 public class MoveController : MonoBehaviour
@@ -33,21 +34,38 @@ public class MoveController : MonoBehaviour
         Vector3 velocity = GenerateVelocity();
         _characterController.Move(velocity);
     }
-    private void Rotate() => transform.rotation = _rotation;
+    private void Rotate()
+    {
+        //if (_direction.magnitude != 0)
+        //    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation( _direction), Time.fixedDeltaTime * _angleSpeed);
+        if (Input.GetKey(KeyCode.E))
+        {
+            transform.Rotate(Vector3.up, 100f* Time.deltaTime);
+        }
+        else if(Input.GetKey(KeyCode.Q)) 
+        {
+            transform.Rotate(Vector3.up, -100f * Time.deltaTime);
+        }
+    }
+
     private Vector3 GenerateVelocity()
     {
         Vector3 velocity;
         if (_direction == Vector3.forward && IsAbleToForward )
         {
-            velocity = _rotation * _direction * _forwardSpeed * Time.fixedDeltaTime;
+            velocity =  transform.forward * _forwardSpeed * Time.fixedDeltaTime;
         }
         else if (_direction == Vector3.back)
         {
-            velocity = _rotation * _direction * _backSpeed * Time.fixedDeltaTime;
+            velocity =  -transform.forward * Time.fixedDeltaTime;
         }
-        else if ((_direction == Vector3.right) || (_direction == Vector3.left))
+        else if (_direction == Vector3.right)
         {
-            velocity = _rotation * _direction * _sideSpeed * Time.fixedDeltaTime;
+            velocity = transform.right * Time.fixedDeltaTime;
+        }
+        else if (_direction == Vector3.left)
+        {
+            velocity = -transform.right * Time.fixedDeltaTime;
         }
         else if (!IsAbleToForward)
         {
@@ -55,7 +73,7 @@ public class MoveController : MonoBehaviour
         }
         else
         {
-            velocity = _rotation * _direction * _backSpeed * Time.fixedDeltaTime;
+            velocity = _direction * Time.fixedDeltaTime;
         }
         return velocity;
     }
