@@ -3,6 +3,7 @@ using Assets.Scripts.Services;
 using Assets.Scripts.Logic.Camera;
 using System.Collections.Generic;
 
+
 namespace Assets.Scripts.Logic
 {
     public class GameSceneManager:MonoBehaviour
@@ -13,14 +14,15 @@ namespace Assets.Scripts.Logic
         private AssetsPaths _assetsPaths;
         private ScoreService _scoreService;
         private GameObject _mapGenerator;
+        private GameObject _player;
 
         private void Start()
         {
             GetServices();
-            CreateUI();
-            CreateMapGenerator();
-            CreatePlayer();
-            CreateEnemies();
+            ConstructUI();
+            ConstructMap();
+            ConstructPlayer();
+            ConstructEnemies();
         }
 
         private void GetServices()
@@ -30,7 +32,7 @@ namespace Assets.Scripts.Logic
             _scoreService = Bootstrap.ServiceLocator.GetService<ScoreService>();
         }
 
-        private void CreateEnemies()
+        private void ConstructEnemies()
         {
             List<Transform> floors = new List<Transform>();
             for(int i=0; i < _mapGenerator.transform.childCount; i++)
@@ -45,23 +47,24 @@ namespace Assets.Scripts.Logic
             for(int i=0; i < _enemyCount; i++) 
             {
                 GameObject enemy = _factory.Create(_assetsPaths.ENEMY);
+                enemy.GetComponent<MoveController>().Construct(new EnemyInputService(enemy.transform,_player.transform));
                 int r = Random.Range(0, floors.Count-1);
                 enemy.transform.position = floors[r].position;
             }
         }
 
-        private void CreatePlayer()
+        private void ConstructPlayer()
         {
-            GameObject player = _factory.Create(_assetsPaths.PLAYER);
-            player.GetComponent<MoveController>().Construct(new PlayerInputService(player.GetComponentInChildren<CameraController>()));
-            player.GetComponent<PlayerScore>().Construct(_scoreService, player.GetComponent<PlayerCollision>());
+            _player = _factory.Create(_assetsPaths.PLAYER);
+            _player.GetComponent<MoveController>().Construct(new PlayerInputService(_player.GetComponentInChildren<CameraController>()));
+            _player.GetComponent<PlayerScore>().Construct(_scoreService, _player.GetComponent<PlayerCollision>());
         }
 
-        private void CreateMapGenerator()
+        private void ConstructMap()
         {
             _mapGenerator = _factory.Create(_assetsPaths.MAZE_SPAWNER);
         }
 
-        private void CreateUI() => _factory.Create(_assetsPaths.GAME_UI);
+        private void ConstructUI() => _factory.Create(_assetsPaths.GAME_UI);
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MoveController : MonoBehaviour
 {
-    [SerializeField] private Rigidbody _rigidbody;
+    [SerializeField] private CharacterController _characterController;
     [SerializeField] private float _forwardSpeed;
     [SerializeField] private float _backSpeed;
     [SerializeField] private float _sideSpeed;
@@ -17,23 +17,19 @@ public class MoveController : MonoBehaviour
 
     public void Construct(IInputService inputService) => _inputService = inputService;
 
-    private void FixedUpdate()
-    {
-        Move();
-        Rotate();
-    }
-
     private void Update()
     {
         GetAxis();
         GetRotation();
+        Move();
+        Rotate();
     }
 
     private void Move()
     {
         _direction = new Vector3(_xAxis, 0, _zAxis).normalized;
         Vector3 velocity = GenerateVelocity();
-        _rigidbody.AddForce(velocity, ForceMode.Force);
+        _characterController.Move(velocity);
     }
     private void Rotate() => transform.rotation = _rotation;
     private Vector3 GenerateVelocity()
@@ -64,12 +60,4 @@ public class MoveController : MonoBehaviour
     }
     private void GetRotation() => _rotation = _inputService.GetRotation();
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Vector3 pos = new Vector3(transform.position.x,
-                                  transform.position.y + GetComponent<CapsuleCollider>().height / 4,
-                                  transform.position.z);
-        Gizmos.DrawCube(transform.position, Vector3.one / 2);
-    }
 }

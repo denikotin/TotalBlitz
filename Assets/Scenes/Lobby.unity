@@ -106,15 +106,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
+    agentRadius: 0.35
     agentHeight: 2
-    agentSlope: 45
+    agentSlope: 43
     agentClimb: 0.4
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.11666667
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -168,7 +168,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lobbySceneManagerPrefab: {fileID: 4358435508354250654, guid: eba9bc60612d18846a1f5e3737b63a61, type: 3}
-  _gameSceneManagerPrefab: {fileID: 3721188874807507470, guid: 8ac61e92ea2648749a0a06e4779bdda4, type: 3}
 --- !u!1 &807196682
 GameObject:
   m_ObjectHideFlags: 0

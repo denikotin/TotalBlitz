@@ -11,15 +11,22 @@ namespace Assets.Scripts.Logic
 
         private void OnCollisionEnter(Collision collision)
         {
+            Debug.Log(collision.transform.tag);
             switch (collision.transform.tag)
             {
-                case "Coin":
-                    Destroy(collision.gameObject);
-                    OnCoinCollisionEvent?.Invoke();
-                    break;
-
                 case "Enemy":
                     OnEmemyCollisionEvent?.Invoke();
+                    break;
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            switch (other.gameObject.tag)
+            {
+                case "Coin":
+                    Destroy(other.gameObject);
+                    OnCoinCollisionEvent?.Invoke();
                     break;
             }
         }
