@@ -43,6 +43,7 @@ public class Bootstrap : MonoBehaviour
         _serviceLocator.RegisterService<SceneLoader>(new SceneLoader());
         _serviceLocator.RegisterService<ScoreService>(new ScoreService());
         _serviceLocator.RegisterService<RecordService>(new RecordService());
+        _serviceLocator.RegisterService<SaveLoadService>(new SaveLoadService());
     }
     private void GetServices() => _factory = _serviceLocator.GetService<Factory>();
 }

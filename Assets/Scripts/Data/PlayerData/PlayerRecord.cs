@@ -6,7 +6,11 @@ namespace Assets.Scripts.Data.PlayerData
     [Serializable]
     public class PlayerRecord
     {
-        public List<Record> Records = new List<Record>();
+        public List<Record> Records;
 
+        public PlayerRecord() 
+        {
+            Records = new List<Record>();
+        }
     }
 }

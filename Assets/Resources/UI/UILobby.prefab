@@ -919,6 +919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _recordLine: {fileID: 7423091200162260477, guid: a26a7e8fc50c2504291ef9203f426bda, type: 3}
+  _recordsContainer: {fileID: 8653224823924028475}
 --- !u!1 &8653224823528016180
 GameObject:
   m_ObjectHideFlags: 0

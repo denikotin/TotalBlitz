@@ -1,4 +1,6 @@
 ﻿using Assets.Scripts.Logic.Camera;
+using Assets.Scripts.Services;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Logic.Player
@@ -8,6 +10,8 @@ namespace Assets.Scripts.Logic.Player
         private PlayerCollision _playerCollision;
         private MoveController _moveController;
         private CameraController _cameraController;
+
+        public event Action OnPlayerLoseEvent;
 
         public void Awake()
         {
@@ -23,6 +27,8 @@ namespace Assets.Scripts.Logic.Player
         {
            _moveController.enabled = false;
            _cameraController.enabled = false;
+
+            OnPlayerLoseEvent?.Invoke();
         }
 
 
