@@ -8,12 +8,12 @@ namespace Assets.Scripts.UI
     {
         [SerializeField] Button _startButton;
         private SceneLoader _sceneLoader;
-        public void Construct(SceneLoader sceneLoader)
-        {
-            _sceneLoader = sceneLoader;
-        }
 
-        private void Start() => _startButton.onClick.AddListener(StartGame);
+        private void Start()
+        {
+            _sceneLoader = Bootstrap.ServiceLocator.GetService<SceneLoader>();
+            _startButton.onClick.AddListener(StartGame);
+        }
 
         private void StartGame() => _sceneLoader.Load("Game");
     }

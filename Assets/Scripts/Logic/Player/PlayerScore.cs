@@ -8,13 +8,13 @@ namespace Assets.Scripts.Logic
         private ScoreService _scoreService;
         private PlayerCollision _playerCollision;
 
-        public void Construct(ScoreService scoreService,PlayerCollision playerCollision)
+        private void Awake()
         {
-            _scoreService = scoreService;
-            _playerCollision = playerCollision;
+            _scoreService = Bootstrap.ServiceLocator.GetService<ScoreService>();
+            _playerCollision = GetComponent<PlayerCollision>();
         }
 
-        private void Start() => _playerCollision.OnCoinCollisionEvent += AddCoins;
+        private void OnEnable() => _playerCollision.OnCoinCollisionEvent += AddCoins;
 
         private void OnDisable() => _playerCollision.OnCoinCollisionEvent -= AddCoins;
 

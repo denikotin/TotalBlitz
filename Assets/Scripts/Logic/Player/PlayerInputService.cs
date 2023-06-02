@@ -8,11 +8,7 @@ namespace Assets.Scripts.Logic
         private Axis _axis = new Axis();
         private CameraController _cameraController;
 
-        public PlayerInputService(CameraController cameraController)
-        {
-            _cameraController = cameraController;
-        }
-
+        public PlayerInputService(CameraController cameraController) => _cameraController = cameraController;
 
         public Axis GetDirection()
         {

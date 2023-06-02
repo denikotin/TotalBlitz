@@ -6,16 +6,15 @@ namespace Assets.Scripts.Logic
     public class PlayerCollision:MonoBehaviour
     {
         public event Action OnCoinCollisionEvent;
-        public event Action OnEmemyCollisionEvent;
+        public event Action OnEnemyCollisionEvent;
 
 
         private void OnCollisionEnter(Collision collision)
         {
-            Debug.Log(collision.transform.tag);
             switch (collision.transform.tag)
             {
                 case "Enemy":
-                    OnEmemyCollisionEvent?.Invoke();
+                    OnEnemyCollisionEvent?.Invoke();
                     break;
             }
         }

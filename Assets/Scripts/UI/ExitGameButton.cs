@@ -8,10 +8,7 @@ namespace Assets.Scripts.UI
     {
         [SerializeField] Button _exitGameButton;
 
-        private void Start()
-        {
-            _exitGameButton.onClick.AddListener(ExitGame);
-        }
+        private void Start() => _exitGameButton.onClick.AddListener(ExitGame);
 
         private void ExitGame()
         {

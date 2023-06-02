@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Services;
-using Assets.Scripts.UI;
 using UnityEngine;
 
 namespace Assets.Scripts.Logic
@@ -8,24 +7,14 @@ namespace Assets.Scripts.Logic
     {
         private Factory _factory;
         private AssetsPaths _assetsPaths;
-        private SceneLoader _sceneLoader;
-
-        public void Construct(ServiceLocator serviceLocator)
-        {
-            _factory = serviceLocator.GetService<Factory>();
-            _assetsPaths = serviceLocator.GetService<AssetsPaths>();
-            _sceneLoader = serviceLocator.GetService<SceneLoader>();
-        }
 
         private void Start()
         {
+            _factory = Bootstrap.ServiceLocator.GetService<Factory>();
+            _assetsPaths = Bootstrap.ServiceLocator.GetService<AssetsPaths>();
             ConstructLobbyUI();
         }
 
-        private void ConstructLobbyUI()
-        {
-            GameObject lobbyUI = _factory.Create(_assetsPaths.LOBBY_UI);
-            lobbyUI.GetComponentInChildren<StartGameButton>().Construct(_sceneLoader);
-        }
+        private void ConstructLobbyUI() => _factory.Create(_assetsPaths.LOBBY_UI);
     }
 }

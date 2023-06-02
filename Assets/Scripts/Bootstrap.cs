@@ -1,4 +1,3 @@
-using Assets.Scripts.Logic;
 using Assets.Scripts.Services;
 using UnityEngine;
 
@@ -23,12 +22,7 @@ public class Bootstrap : MonoBehaviour
     }
 
     private void Start() => RunGame();
-
-    private void RunGame()
-    {
-        GameObject lobbySceneManagerGO = _factory.Create(_lobbySceneManagerPrefab);
-        lobbySceneManagerGO.GetComponent<LobbySceneManager>().Construct(_serviceLocator);
-    }  
+    private void RunGame() => _factory.Create(_lobbySceneManagerPrefab);
     private void CreateSingleton()
     {
         if (_instance == null)

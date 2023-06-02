@@ -19,10 +19,10 @@ namespace Assets.Scripts.Logic
         private void Start()
         {
             GetServices();
-            ConstructUI();
             ConstructMap();
             ConstructPlayer();
             ConstructEnemies();
+            ConstructUI();
         }
 
         private void GetServices()
@@ -57,7 +57,6 @@ namespace Assets.Scripts.Logic
         {
             _player = _factory.Create(_assetsPaths.PLAYER);
             _player.GetComponent<MoveController>().Construct(new PlayerInputService(_player.GetComponentInChildren<CameraController>()));
-            _player.GetComponent<PlayerScore>().Construct(_scoreService, _player.GetComponent<PlayerCollision>());
         }
 
         private void ConstructMap()
@@ -65,6 +64,10 @@ namespace Assets.Scripts.Logic
             _mapGenerator = _factory.Create(_assetsPaths.MAZE_SPAWNER);
         }
 
-        private void ConstructUI() => _factory.Create(_assetsPaths.GAME_UI);
+        private void ConstructUI()
+        {
+            GameObject ui = _factory.Create(_assetsPaths.GAME_UI);
+            ui.GetComponent<LoseGame>().Construct(_player.GetComponent<PlayerCollision>());
+        }
     }
 }
