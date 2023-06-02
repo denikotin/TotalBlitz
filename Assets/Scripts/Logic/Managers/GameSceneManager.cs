@@ -12,7 +12,6 @@ namespace Assets.Scripts.Logic
 
         private Factory _factory;
         private AssetsPaths _assetsPaths;
-        private ScoreService _scoreService;
         private GameObject _mapGenerator;
         private GameObject _player;
 
@@ -29,7 +28,6 @@ namespace Assets.Scripts.Logic
         {
             _factory = Bootstrap.ServiceLocator.GetService<Factory>();
             _assetsPaths = Bootstrap.ServiceLocator.GetService<AssetsPaths>();
-            _scoreService = Bootstrap.ServiceLocator.GetService<ScoreService>();
         }
 
         private void ConstructEnemies()
@@ -59,10 +57,7 @@ namespace Assets.Scripts.Logic
             _player.GetComponent<MoveController>().Construct(new PlayerInputService(_player.GetComponentInChildren<CameraController>()));
         }
 
-        private void ConstructMap()
-        {
-            _mapGenerator = _factory.Create(_assetsPaths.MAZE_SPAWNER);
-        }
+        private void ConstructMap() => _mapGenerator = _factory.Create(_assetsPaths.MAZE_SPAWNER);
 
         private void ConstructUI()
         {

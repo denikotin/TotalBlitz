@@ -7,10 +7,6 @@ namespace Assets.Scripts.Data.PlayerData
     public class PlayerRecord
     {
         public List<Record> Records;
-
-        public PlayerRecord() 
-        {
-            Records = new List<Record>();
-        }
+        public PlayerRecord() => Records = new List<Record>();
     }
 }

@@ -4,7 +4,6 @@ namespace Assets.Scripts.Logic.Camera
 {
     public class CameraController : MonoBehaviour
     {
-        public Quaternion PlanarRotation => Quaternion.Euler(0f, _rotationY, 0f);
 
         [SerializeField] private Transform _target;
         [SerializeField][Range(0.1f, 10f)] private float _cameraSpeed;
@@ -12,6 +11,7 @@ namespace Assets.Scripts.Logic.Camera
         [SerializeField][Range(0f, 10f)] private float _verticalOffset;
         [SerializeField][Range(0f, 10f)] private float _distanceToTarget;
 
+        public Quaternion PlanarRotation => Quaternion.Euler(0f, _rotationY, 0f);
         private float _rotationX;
         private float _rotationY;
 

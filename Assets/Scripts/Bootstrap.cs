@@ -22,7 +22,6 @@ public class Bootstrap : MonoBehaviour
     }
 
     private void Start() => RunGame();
-    private void RunGame() => _factory.Create(_lobbySceneManagerPrefab);
     private void CreateSingleton()
     {
         if (_instance == null)
@@ -46,4 +45,5 @@ public class Bootstrap : MonoBehaviour
         _serviceLocator.RegisterService<SaveLoadService>(new SaveLoadService());
     }
     private void GetServices() => _factory = _serviceLocator.GetService<Factory>();
+    private void RunGame() => _factory.Create(_lobbySceneManagerPrefab);
 }

@@ -54,6 +54,7 @@ MonoBehaviour:
   _sideSpeed: 1
   _angleSpeed: 12
   _direction: {x: 0, y: 0, z: 0}
+  IsMovable: 1
 --- !u!54 &6564430692083331259
 Rigidbody:
   m_ObjectHideFlags: 0

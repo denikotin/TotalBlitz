@@ -6,10 +6,6 @@ namespace Assets.Scripts.Data.PlayerData
     public class Record
     {
         public int Value;
-
-        public Record(int value)
-        {
-            Value = value;
-        }
+        public Record(int value) => Value = value;
     }
 }

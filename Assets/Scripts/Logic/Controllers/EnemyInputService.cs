@@ -19,9 +19,6 @@ namespace Assets.Scripts.Logic
             return new Axis(dir.x,dir.z);
         }
 
-        public Quaternion GetRotation()
-        {
-            return Quaternion.identity;
-        }
+        public Quaternion GetRotation() => Quaternion.identity;
     }
 }

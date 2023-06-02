@@ -10,6 +10,8 @@ public class MoveController : MonoBehaviour
     [SerializeField] private float _angleSpeed;
     [SerializeField] private Vector3 _direction;
 
+    public bool IsAbleToForward = true;
+
     private IInputService _inputService;
     private Quaternion _rotation;
     private float _xAxis;
@@ -35,7 +37,7 @@ public class MoveController : MonoBehaviour
     private Vector3 GenerateVelocity()
     {
         Vector3 velocity;
-        if (_direction == Vector3.forward)
+        if (_direction == Vector3.forward && IsAbleToForward )
         {
             velocity = _rotation * _direction * _forwardSpeed * Time.fixedDeltaTime;
         }
@@ -46,6 +48,10 @@ public class MoveController : MonoBehaviour
         else if ((_direction == Vector3.right) || (_direction == Vector3.left))
         {
             velocity = _rotation * _direction * _sideSpeed * Time.fixedDeltaTime;
+        }
+        else if (!IsAbleToForward)
+        {
+            velocity = Vector3.zero;
         }
         else
         {
