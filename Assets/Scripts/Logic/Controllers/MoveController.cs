@@ -14,11 +14,18 @@ public class MoveController:MonoBehaviour
 
     private void Update() => Move();
 
-    public void MoveForward() => _velocity = _forwardSpeed * Time.fixedDeltaTime * transform.forward;
+    public void MoveToDirection(Vector3 direction)
+    {
+        transform.forward = direction;
+        Quaternion.LookRotation(direction);
+        _velocity = direction.normalized *_forwardSpeed * Time.deltaTime;
+    }
 
-    public void MoveBackward() => _velocity = -transform.forward * _backSpeed * Time.fixedDeltaTime;
+    public void MoveForward() => _velocity = _forwardSpeed * Time.deltaTime * transform.forward;
 
-    public void MoveSideways(int direction) => _velocity += Mathf.Sign(direction) * transform.right * _sideSpeed * Time.fixedDeltaTime;
+    public void MoveBackward() => _velocity = -transform.forward * _backSpeed * Time.deltaTime;
+
+    public void MoveSideways(int direction) => _velocity += Mathf.Sign(direction) * transform.right * _sideSpeed * Time.deltaTime;
 
     public void Turn(int direction) => transform.Rotate(100f * Mathf.Sign(direction) * Time.deltaTime * Vector3.up);
 

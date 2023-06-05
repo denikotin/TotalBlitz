@@ -12,18 +12,21 @@ namespace Assets.Scripts.Logic
      
         private Transform _player;
 
+        private bool _isFollow = false;
+       
+
 
         private void OnEnable()
         {
-            _aggroTrigger.OnPlayerTriggerEnter += FollowPlayer;
-            _aggroTrigger.OnPlayerTriggerExit += StopFollowPlayer;
+            _aggroTrigger.OnPlayerTriggerEnter += StartFollow;
+            _aggroTrigger.OnPlayerTriggerExit += StopFollow;
         }
 
 
         private void OnDisable()
         {
-            _aggroTrigger.OnPlayerTriggerEnter -= FollowPlayer;
-            _aggroTrigger.OnPlayerTriggerExit -= StopFollowPlayer;
+            _aggroTrigger.OnPlayerTriggerEnter -= StartFollow;
+            _aggroTrigger.OnPlayerTriggerExit -= StopFollow;
         }
 
         public void Construct(Transform player)
@@ -33,10 +36,17 @@ namespace Assets.Scripts.Logic
 
         public void Update()
         {
-            Move();
+            if (!_isFollow)
+            {
+                Patrol();
+            }
+            else
+            {
+                FollowPlayer();
+            }
         }
 
-        public void Move()
+        public void Patrol()
         {
             _moveController.MoveForward();
             if (_characterRaycast.IsWallForward)
@@ -67,16 +77,14 @@ namespace Assets.Scripts.Logic
         }
 
 
+        private void StartFollow() => _isFollow = true;
+
+        private void StopFollow() => _isFollow = false;
 
         private void FollowPlayer()
         {
             Vector3 target = _player.transform.position - transform.position;
+            _moveController.MoveToDirection(target);
         }
-
-        private void StopFollowPlayer()
-        {
-
-        }
-
     }
 }

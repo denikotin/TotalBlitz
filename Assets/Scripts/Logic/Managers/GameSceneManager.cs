@@ -45,6 +45,7 @@ namespace Assets.Scripts.Logic
             for(int i=0; i < _enemyCount; i++) 
             {
                 GameObject enemy = _factory.Create(_assetsPaths.ENEMY);
+                enemy.GetComponent<EnemyInputService>().Construct(_player.transform);
                 int r = Random.Range(0, floors.Count-1);
                 enemy.transform.position = floors[r].position;
             }
