@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 6564430692083331259}
   - component: {fileID: 6564430692083331261}
   - component: {fileID: 6691377320675228270}
+  - component: {fileID: -8663393456660821732}
+  - component: {fileID: 7369081165270029761}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -33,6 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6564430692369913419}
+  - {fileID: 3195010258235108394}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -53,8 +56,7 @@ MonoBehaviour:
   _backSpeed: 1
   _sideSpeed: 1
   _angleSpeed: 12
-  _direction: {x: 0, y: 0, z: 0}
-  IsMovable: 1
+  IsAbleToForward: 1
 --- !u!54 &6564430692083331259
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -103,6 +105,33 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &-8663393456660821732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6564430692083331257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9d521a6102d1c47903251cc1679e19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7369081165270029761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6564430692083331257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d69d96a41be3bd469bec946850b3efe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveController: {fileID: 6564430692083331260}
+  _characterRaycast: {fileID: -8663393456660821732}
+  _aggroTrigger: {fileID: 5885158045987510246}
 --- !u!1 &6564430692369913418
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,3 +313,70 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &7493517367788204414
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3195010258235108394}
+  - component: {fileID: 8227151200320065239}
+  - component: {fileID: 3033516156734075517}
+  - component: {fileID: 5885158045987510246}
+  m_Layer: 0
+  m_Name: AggroTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3195010258235108394
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7493517367788204414}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6564430692083331258}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &8227151200320065239
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7493517367788204414}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!135 &3033516156734075517
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7493517367788204414}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5885158045987510246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7493517367788204414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b059ff067d23d914d9fbdaf86ee8523f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
