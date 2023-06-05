@@ -27,12 +27,12 @@ public class Bootstrap : MonoBehaviour
         if (_instance == null)
         {
             _instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else if (_instance == this)
         {
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
     }
     private void RegisterServices()
     {

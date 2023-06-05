@@ -3,22 +3,44 @@ using UnityEngine;
 
 namespace Assets.Scripts.Logic
 {
-    public class PlayerInputService : IInputService
+    public class PlayerInputService : MonoBehaviour
     {
-        private Axis _axis = new Axis();
-        private CameraController _cameraController;
+        [SerializeField] CameraController _cameraController;
+        [SerializeField] MoveController _moveController;
 
-        public PlayerInputService(CameraController cameraController) => _cameraController = cameraController;
 
-        public Axis GetDirection()
+        public void Update()
         {
-            float xAxis = Input.GetAxisRaw("Horizontal");
-            float zAxis = Input.GetAxisRaw("Vertical");
-            _axis.xAxis = xAxis;
-            _axis.zAxis = zAxis;
-            return _axis;
-        }
+            if (Input.GetKey(KeyCode.W))
+            {
+                _moveController.MoveForward();
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                _moveController.MoveBackward();
+            }
+            else
+            {
+                _moveController.Stop();
+            }
+           
+            if (Input.GetKey(KeyCode.A))
+            {
+                _moveController.MoveSideways(-1);
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                _moveController.MoveSideways(1);
+            }
 
-        public Quaternion GetRotation() => _cameraController.PlanarRotation;
+            if (Input.GetKey(KeyCode.E))
+            {
+                _moveController.Turn(1);
+            }
+            else if (Input.GetKey(KeyCode.Q))
+            {
+                _moveController.Turn(-1);
+            }
+        }
     }
 }

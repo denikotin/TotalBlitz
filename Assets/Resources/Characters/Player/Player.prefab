@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1214077808753481884}
   - component: {fileID: -128736765876661857}
   - component: {fileID: 3721957415635228011}
+  - component: {fileID: 8820247203609062141}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -57,7 +58,7 @@ MonoBehaviour:
   _backSpeed: 1
   _sideSpeed: 2
   _angleSpeed: 12
-  _direction: {x: 0, y: 0, z: 0}
+  IsAbleToForward: 1
 --- !u!114 &5551116290303612628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +139,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9d521a6102d1c47903251cc1679e19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8820247203609062141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6564430692083331257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10c06aeda16cd4f4c889ab5cd2e64235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraController: {fileID: 6564430692157117731}
+  _moveController: {fileID: 6564430692083331260}
 --- !u!1 &6564430692157117730
 GameObject:
   m_ObjectHideFlags: 0

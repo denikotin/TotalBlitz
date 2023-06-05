@@ -45,7 +45,6 @@ namespace Assets.Scripts.Logic
             for(int i=0; i < _enemyCount; i++) 
             {
                 GameObject enemy = _factory.Create(_assetsPaths.ENEMY);
-                enemy.GetComponent<MoveController>().Construct(new EnemyInputService(enemy.transform,_player.transform));
                 int r = Random.Range(0, floors.Count-1);
                 enemy.transform.position = floors[r].position;
             }
@@ -54,7 +53,6 @@ namespace Assets.Scripts.Logic
         private void ConstructPlayer()
         {
             _player = _factory.Create(_assetsPaths.PLAYER);
-            _player.GetComponent<MoveController>().Construct(new PlayerInputService(_player.GetComponentInChildren<CameraController>()));
         }
 
         private void ConstructMap() => _mapGenerator = _factory.Create(_assetsPaths.MAZE_SPAWNER);
